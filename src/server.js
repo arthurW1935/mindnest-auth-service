@@ -1,4 +1,8 @@
 // src/server.js
+const PROD_URL = "http://localhost:3000"
+const LOCAL_URL = "http://localhost:3000"
+
+
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -20,8 +24,8 @@ app.use(helmet());
 // CORS configuration
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-frontend-domain.com'] 
-    : ['http://localhost:3000', 'http://localhost:3001'],
+    ? [PROD_URL] 
+    : [LOCAL_URL],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
@@ -117,8 +121,8 @@ const startServer = async () => {
     const server = app.listen(PORT, () => {
       console.log(`🚀 Auth Service running on port ${PORT}`);
       console.log(`📊 Environment: ${process.env.NODE_ENV}`);
-      console.log(`🔗 Health check: http://localhost:${PORT}/health`);
-      console.log(`🔐 Auth API: http://localhost:${PORT}/api/auth`);
+      console.log(`🔗 Health check: :${PORT}/health`);
+      console.log(`🔐 Auth API: :${PORT}/api/auth`);
     });
 
     // Handle graceful shutdown signals

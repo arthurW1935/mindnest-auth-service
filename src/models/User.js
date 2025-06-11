@@ -135,6 +135,7 @@ class User {
     try {
       // Check if admin already exists
       const existingAdmin = await User.findByEmail(email);
+      console.log(existingAdmin);
       if (existingAdmin) {
         throw new Error('Admin user already exists');
       }

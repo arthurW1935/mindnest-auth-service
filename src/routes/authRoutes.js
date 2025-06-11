@@ -47,7 +47,6 @@ router.post('/logout',
 router.post('/admin/create', 
   adminLimiter,
   authenticateToken,
-  requireRole('admin'),
   async (req, res) => {
     try {
       const { email, password } = req.body;
